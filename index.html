@@ -3,32 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tutoriais da pós | FIAP</title>
+  <title>Caderno de engenharia | Tutoriais da pós</title>
+  <meta name="description" content="Guias comentados de Docker, Amazon ECR e Kubernetes, a partir do projeto Oficina Mecânica da pós-graduação FIAP.">
   <style>
-    body { margin: 0; background: #f5f7f6; color: #202924; font: 16px/1.6 system-ui, sans-serif; }
-    main { max-width: 760px; margin: 48px auto; padding: 0 24px; }
-    h1 { font-size: 28px; line-height: 1.2; }
-    ul { padding: 0; list-style: none; }
-    li { padding: 20px 0; border-bottom: 1px solid #cddbd3; }
-    a { color: #175846; font-size: 20px; font-weight: 600; }
-    a:focus-visible { outline: 3px solid #b76b16; outline-offset: 4px; }
-    p { margin: 6px 0; }
+    :root{color-scheme:light;--ink:#202a27;--muted:#66716b;--green:#185d46;--paper:#f6f8f5;--line:#dce3dc;--pink:#bd285b}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:0}a{color:inherit}a:focus-visible{outline:3px solid var(--pink);outline-offset:6px}.wrap{width:min(1120px,calc(100% - 64px));margin:auto}.skip{position:absolute;top:-80px;left:20px;background:white;padding:12px;z-index:2}.skip:focus{top:10px}
+    .topbar{border-bottom:1px solid var(--line);background:#fff}.topbar .wrap{min-height:84px;display:flex;justify-content:space-between;align-items:center;gap:24px}.identity{display:flex;align-items:center;gap:12px}.mark{display:grid;place-items:center;background:var(--green);color:white;width:38px;height:38px;border-radius:6px;font:700 19px ui-monospace,monospace}.brand{font-size:15px;font-weight:700}.brand small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:1.6px;font-weight:500;color:var(--muted)}.source{font-size:13px;text-decoration:none;color:var(--muted)}.source:hover{color:var(--green)}.source span{margin-left:8px}
+    .intro{padding:62px 0 38px;display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:56px;align-items:end}.eyebrow{font:600 11px ui-monospace,Consolas,monospace;text-transform:uppercase;letter-spacing:1.5px;color:var(--green);margin:0 0 18px}.eyebrow:before{content:"";display:inline-block;width:20px;height:2px;background:var(--pink);vertical-align:middle;margin-right:10px}h1{font-size:46px;line-height:1.12;font-weight:650;margin:0 0 18px;max-width:650px}.intro p.description{font-size:16px;color:var(--muted);max-width:530px;margin:0;line-height:1.8}.project{border-left:1px solid var(--line);padding-left:24px;margin-bottom:4px}.project small{font:11px ui-monospace,monospace;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}.project strong{display:block;font-size:15px;font-weight:600;margin:9px 0 3px}.project p{font-size:12px;color:var(--muted);margin:0}
+    .section-heading{display:flex;justify-content:space-between;align-items:center;padding:20px 0 16px;border-top:1px solid var(--line);gap:15px}.section-heading h2{font-size:14px;font-weight:600;margin:0}.section-heading span{font:11px ui-monospace,monospace;color:var(--muted)}.guides{display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:0;margin:0;list-style:none}.guide{height:100%;display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;transition:border-color .18s,transform .18s}.guide:hover{border-color:#86a493;transform:translateY(-3px)}.visual{height:180px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;border-bottom:1px solid var(--line);position:relative;overflow:hidden}.docker{background:#edf4f7}.kubernetes{background:#edf1fb}.visual-top{display:flex;align-items:center;justify-content:space-between;gap:16px}.visual img{width:48px;height:48px;object-fit:contain}.visual .index{font:12px ui-monospace,monospace;color:#687b87}.terminal{display:flex;gap:9px;align-items:flex-start;font:12px/1.6 ui-monospace,Consolas,monospace;color:#234a5f;overflow-wrap:anywhere}.terminal .prompt{color:#397250}.nodes{display:flex;align-items:center;gap:8px;font:11px ui-monospace,Consolas,monospace;color:#354b81}.node{background:#fff;border:1px solid #c8d1e5;border-radius:4px;padding:9px 12px;min-width:0}.nodes .connector{color:#6e81ad}.visual-caption{font:10px ui-monospace,monospace;color:#627382;text-transform:uppercase;letter-spacing:1px;margin:5px 0 0}.body{padding:24px 26px;display:flex;flex-direction:column;flex:1}.category{font:10px ui-monospace,monospace;color:var(--green);text-transform:uppercase;letter-spacing:1.2px;margin:0 0 10px}.guide h3{font-size:23px;line-height:1.25;margin:0 0 12px;font-weight:650}.guide h3 a{text-decoration:none}.guide h3 a:after{content:"";position:absolute;inset:0}.guide{position:relative}.guide p.summary{font-size:14px;line-height:1.8;color:var(--muted);margin:0 0 20px}.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto}.tags span{font:10px ui-monospace,monospace;color:#52655a;background:#f1f5f0;border-radius:3px;padding:4px 7px}.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:17px;border-top:1px solid #edf0eb;font-size:13px;color:var(--green);font-weight:600}.card-footer .arrow{font-size:19px;line-height:1}.card-footer small{font:10px ui-monospace,monospace;color:var(--muted);font-weight:400}
+    .route{margin-top:40px;padding:25px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:35px}.route h2{font-size:13px;font-weight:600;margin:0;white-space:nowrap}.route ol{list-style:none;display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:0;margin:0;font-size:12px;color:var(--muted)}.route li{display:flex;gap:10px;align-items:center}.route li+li:before{content:"→";color:#99a79d}.route b{color:var(--green);font:11px ui-monospace,monospace}.footer{padding:30px 0 36px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:11px}.footer p{margin:0}.footer a{text-decoration:none}.footer a:hover{text-decoration:underline}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.guide{transition:none}.guide:hover{transform:none}}@media(max-width:760px){.wrap{width:calc(100% - 36px)}.topbar .wrap{min-height:74px}.intro{grid-template-columns:1fr;gap:24px;padding:36px 0 30px}h1{font-size:34px}.project{display:none}.guides{grid-template-columns:1fr;gap:20px}.visual{height:160px;padding:20px}.body{padding:22px}.section-heading span{font-size:10px}.route{display:block;margin-top:30px}.route h2{margin-bottom:15px}.route ol{gap:10px}.footer{flex-direction:column;gap:7px}.source{font-size:12px}.brand{font-size:13px}.brand small{font-size:9px;letter-spacing:1px}}@media print{.topbar,.footer,.route{display:none}.intro{padding-top:0}.guides{display:block}.guide{break-inside:avoid;margin-bottom:20px}.wrap{width:100%}.visual{height:130px}}
   </style>
 </head>
 <body>
-  <main>
-    <h1>Tutoriais da pós</h1>
-    <p>Guias de estudo do projeto Oficina Mecânica da FIAP.</p>
-    <ul>
-      <li>
-        <a href="guia-oficina-ecr.html">Docker e Amazon ECR</a>
-        <p>Build da imagem, autenticação e publicação no registry da AWS, com os comandos explicados.</p>
+  <a class="skip" href="#conteudo">Ir para os guias</a>
+  <header class="topbar"><div class="wrap">
+    <div class="identity"><span class="mark" aria-hidden="true">{ }</span><div class="brand">Caderno de engenharia<small>Pós-graduação · FIAP</small></div></div>
+    <a class="source" href="https://github.com/Carlos1br/tutorials_general_pos">Repositório <span aria-hidden="true">↗</span></a>
+  </div></header>
+  <main id="conteudo" class="wrap">
+    <div class="intro">
+      <div><p class="eyebrow">Biblioteca de estudos</p><h1>Tutoriais da pós.<br>Da teoria ao deploy.</h1><p class="description">Comandos comentados, decisões explicadas e infraestrutura na prática. Um passo de cada vez.</p></div>
+      <aside class="project"><small>Projeto de referência</small><strong>Oficina Mecânica</strong><p>Go · PostgreSQL · AWS</p></aside>
+    </div>
+    <section aria-labelledby="guias-title">
+    <div class="section-heading"><h2 id="guias-title">Explore os guias</h2><span>02 publicações / acesso livre</span></div>
+    <ul class="guides">
+      <li><article class="guide">
+        <div class="visual docker" aria-hidden="true"><div class="visual-top"><img src="assets/docker.svg" alt="" width="48" height="48"><span class="index">01 / CONTAINERS</span></div><div><div class="terminal"><span class="prompt">$</span><span>docker build -t oficina-api:v1 .<br>docker push registry/oficina-api:v1</span></div><p class="visual-caption">Código → imagem → registry</p></div></div>
+        <div class="body"><p class="category">Containers &amp; cloud</p><h3><a href="guia-oficina-ecr.html">Docker e Amazon ECR</a></h3><p class="summary">Do Dockerfile à imagem publicada na AWS. Entenda o build, as tags, a autenticação e cada comando do caminho.</p><div class="tags"><span>Docker</span><span>AWS ECR</span><span>CLI</span></div><div class="card-footer"><span>Abrir guia <span class="arrow" aria-hidden="true">↗</span></span><small>PASSO A PASSO</small></div></div>
+      </article>
       </li>
-      <li>
-        <a href="guia-kubernetes.html">Manifests Kubernetes</a>
-        <p>Campos e relações entre API, PostgreSQL, rede, configuração, escala e armazenamento persistente.</p>
+      <li><article class="guide">
+        <div class="visual kubernetes" aria-hidden="true"><div class="visual-top"><img src="assets/kubernetes.svg" alt="" width="48" height="48"><span class="index">02 / ORQUESTRAÇÃO</span></div><div><div class="nodes"><span class="node">API</span><span class="connector">→</span><span class="node">PostgreSQL</span><span class="connector">→</span><span class="node">EBS</span></div><p class="visual-caption">Aplicação · rede · persistência</p></div></div>
+        <div class="body"><p class="category">Orquestração &amp; infraestrutura</p><h3><a href="guia-kubernetes.html">Manifests Kubernetes</a></h3><p class="summary">Leia os arquivos YAML com contexto. Descubra como API, banco, serviços, escala e volumes se conectam no cluster.</p><div class="tags"><span>Kubernetes</span><span>PostgreSQL</span><span>AWS EBS</span></div><div class="card-footer"><span>Abrir guia <span class="arrow" aria-hidden="true">↗</span></span><small>CAMPO A CAMPO</small></div></div>
+      </article>
       </li>
     </ul>
+    </section>
+    <section class="route" aria-labelledby="route-title"><h2 id="route-title">Uma trilha, do início ao fim</h2><ol><li><b>01</b> Construir a imagem</li><li><b>02</b> Publicar no ECR</li><li><b>03</b> Entender o cluster</li><li><b>04</b> Preparar o deploy</li></ol></section>
+    <footer class="footer"><p>Aprendizado documentado. Conhecimento compartilhado.</p><a href="https://github.com/Carlos1br">Carlos1br <span aria-hidden="true">↗</span></a></footer>
   </main>
 </body>
 </html>
